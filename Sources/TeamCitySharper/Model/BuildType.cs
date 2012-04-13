@@ -8,5 +8,7 @@
         public string ProjectName { get; set; }
         public string ProjectId { get; set; }
         public string WebUrl { get; set; }
+
+        public Builds Builds { get; set; }
     }
 }

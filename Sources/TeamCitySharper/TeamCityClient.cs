@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RestSharp;
@@ -42,6 +43,31 @@ namespace TeamCitySharper
             var allProjects = GetAllProjects();
 
             return allProjects.Select(GetProjectDetailAsync);
+        }
+
+        public Task<BuildType> GetBuildTypeDetailsAsync(BuildType buildType)
+        {
+            var request = GetRestRequestFor(buildType.Href);
+
+            return _restClient.GetAsync<BuildType>(request);
+        }
+
+        public Task<List<Build>> GetBuildsForAsync(BuildType buildType, int count = 5)
+        {
+            var resource = String.Format("{0}?count={1}", buildType.Builds.Href, count);
+            var request = GetRestRequestFor(resource);
+
+            return
+                _restClient.GetAsync<BuildResponse, List<Build>>(request,
+                                                                 response => response != null ? response.Build : null);
+        }
+
+        public List<Build> GetBuildsFor(BuildType buildType, int count = 5)
+        {
+            var buildsForAsync = GetBuildsForAsync(buildType, count);
+            buildsForAsync.Wait();
+
+            return buildsForAsync.Result;
         }
 
         private Task<Project> GetProjectDetailAsync(Project project)

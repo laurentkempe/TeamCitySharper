@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ITeamCityClient.cs" />
+    <Compile Include="Model\Build.cs" />
+    <Compile Include="Model\BuildResponse.cs" />
+    <Compile Include="Model\Builds.cs" />
     <Compile Include="Model\BuildType.cs" />
     <Compile Include="Model\BuildTypes.cs" />
     <Compile Include="Model\Project.cs" />

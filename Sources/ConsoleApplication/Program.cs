@@ -42,15 +42,28 @@ namespace ConsoleApplication
         {
             Console.WriteLine("Project => {0} : {1}", project.Id, project.Name);
 
-            WriteLineBuildTypes(project.BuildTypes.BuildType);
+            foreach (var buildType in project.BuildTypes.BuildType)
+            {
+                var task = _teamCityClient.GetBuildTypeDetailsAsync(buildType);
+                task.ContinueWith(t => WriteLineBuildTypes(t.Result));
+            }
         }
 
-        private void WriteLineBuildTypes(IEnumerable<BuildType> buildTypes)
+        private void WriteLineBuildTypes(BuildType buildType)
         {
-            foreach (var buildType in buildTypes)
+            Console.WriteLine("Build Types => {0} : {1}", buildType.Name, buildType.ProjectName);
+
+            var builds = _teamCityClient.GetBuildsFor(buildType);
+
+            foreach (var build in builds)
             {
-                Console.WriteLine("Build Types => {0} : {1}", buildType.Name, buildType.ProjectName);
+                WriteLineBuild(build);
             }
+        }
+
+        private void WriteLineBuild(Build build)
+        {
+            Console.WriteLine("Build => {0}", build.Status);
         }
     }
 
