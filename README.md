@@ -2,7 +2,7 @@
 
 ## About
 
-TeamCitySharper is a .NET library to access [TeamCity](http://www.jetbrains.com/teamcity ) REST API in both Async and Sync ways.
+TeamCitySharper is a .NET 4 library to access [TeamCity](http://www.jetbrains.com/teamcity ) REST API in both Async and Sync ways.
 
 ## Usage
 
@@ -35,7 +35,9 @@ TeamCitySharper is a .NET library to access [TeamCity](http://www.jetbrains.com/
 ```
 
 
-## Install
+## Build
+
+You might use the ClickToBuild.bat which use [psake](https://github.com/psake/psake) or just open the solution in Visual Studio 2010
 
 ## Contribute
 
