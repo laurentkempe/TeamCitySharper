@@ -9,9 +9,9 @@ TeamCitySharper is a .NET library to access [TeamCity](http://www.jetbrains.com/
 ### Async usage
 
 ```c#
-        var teamCityClient = new TeamCityClient("username", "password", "yourServerUrl");
+        var teamCitySharper = new TeamCitySharper("username", "password", "yourServerUrl");
         
-        IEnumerable<Task<Project>> allProjects = _teamCityClient.GetProjectDetailsAsync();
+        IEnumerable<Task<Project>> allProjects = teamCitySharper.GetProjectDetailsAsync();
         
         foreach (var task in allProjects)
         {
@@ -24,9 +24,9 @@ TeamCitySharper is a .NET library to access [TeamCity](http://www.jetbrains.com/
 ### Sync usage
 
 ```c#
-        var teamCityClient = new TeamCityClient("username", "password", "yourServerUrl");
+        var teamCitySharper = new TeamCitySharper("username", "password", "yourServerUrl");
         
-        IEnumerable<Project> allProjects = _teamCityClient.GetProjectDetailsAsync();
+        IEnumerable<Project> allProjects = teamCitySharper.GetProjectDetailsAsync();
         
         foreach (var project in allProjects)
         {       
