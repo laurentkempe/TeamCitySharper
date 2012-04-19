@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Teamcitysharper by laurentkempe</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Teamcitysharper</h1>
+        <p>.NET 4 library to access TeamCity REST API in both Async and Sync ways</p>
+        <p class="view"><a href="https://github.com/laurentkempe/TeamCitySharper">View the Project on GitHub <small>laurentkempe/TeamCitySharper</small></a></p>
+        <ul>
+          <li><a href="https://github.com/laurentkempe/TeamCitySharper/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/laurentkempe/TeamCitySharper/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/laurentkempe/TeamCitySharper">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>TeamCitySharper</h1>
+
+<h2>About</h2>
+
+<p>TeamCitySharper is a .NET 4 library to access <a href="http://www.jetbrains.com/teamcity">TeamCity</a> REST API in both Async and Sync ways.</p>
+
+<h2>Usage</h2>
+
+<h3>Async usage</h3>
+
+<div class="highlight">
+<pre><span class="kt">var</span> <span class="n">teamCityClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TeamCityClient</span><span class="p">(</span><span class="s">"username"</span><span class="p">,</span> <span class="s">"password"</span><span class="p">,</span> <span class="s">"yourServerUrl"</span><span class="p">);</span>
+
+<span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Task</span><span class="p">&lt;</span><span class="n">Project</span><span class="p">&gt;&gt;</span> <span class="n">allProjects</span> <span class="p">=</span> <span class="n">teamCityClient</span><span class="p">.</span><span class="n">GetProjectDetailsAsync</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">task</span> <span class="k">in</span> <span class="n">allProjects</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">project</span> <span class="p">=</span> <span class="n">task</span><span class="p">.</span><span class="n">Result</span><span class="p">;</span>
+
+    <span class="n">task</span><span class="p">.</span><span class="n">ContinueWith</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">WriteLineProjects</span><span class="p">(</span><span class="n">project</span><span class="p">));</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h3>Sync usage</h3>
+
+<div class="highlight">
+<pre><span class="kt">var</span> <span class="n">teamCityClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TeamCityClient</span><span class="p">(</span><span class="s">"username"</span><span class="p">,</span> <span class="s">"password"</span><span class="p">,</span> <span class="s">"yourServerUrl"</span><span class="p">);</span>
+
+<span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Project</span><span class="p">&gt;</span> <span class="n">allProjects</span> <span class="p">=</span> <span class="n">teamCityClient</span><span class="p">.</span><span class="n">GetProjectDetailsAsync</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">project</span> <span class="k">in</span> <span class="n">allProjects</span><span class="p">)</span>
+<span class="p">{</span>       
+    <span class="n">WriteLineProjects</span><span class="p">(</span><span class="n">project</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h2>Build</h2>
+
+<p>You might use the ClickToBuild.bat which use <a href="https://github.com/psake/psake">psake</a> or just open the solution in Visual Studio 2010</p>
+
+<h2>Contribute</h2>
+
+<p><a href="https://github.com/laurentkempe/TeamCitySharper">https://github.com/laurentkempe/TeamCitySharper</a></p>
+
+<h2>Support / Help</h2>
+
+<p>Follow (@<a href="https://twitter.com/laurentkempe">laurentkempe</a>) on twitter.</p>
+
+<p>Report bugs &amp; issues on <a href="https://github.com/laurentkempe/TeamCitySharper/issues">https://github.com/laurentkempe/TeamCitySharper/issues</a></p>
+
+<h2>Credits and Thanks</h2>
+
+<p>Copyright (c) 2102 Laurent Kempé (@<a href="https://twitter.com/laurentkempe">laurentkempe</a>)</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/laurentkempe">laurentkempe</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
